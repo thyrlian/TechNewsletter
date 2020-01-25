@@ -32,6 +32,10 @@ body {
   font-size: 1.05em;
 }
 
+.article {
+  margin-bottom: 20px;
+}
+
 .title {
   margin-bottom: 10px;
 }
@@ -60,4 +64,10 @@ body {
   color: #DB7734;
   display: table-cell;
   vertical-align: middle;
+}
+
+.read-more-link a {
+  text-decoration: none;
+  font-weight: bold;
+  color: #DB3498;
 }
