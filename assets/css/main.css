@@ -71,3 +71,9 @@ body {
   font-weight: bold;
   color: #DB3498;
 }
+
+#imprint {
+  text-align: center;
+  line-height: 150%;
+  font-family: 'Courier New','Courier','Lucida Sans Typewriter','Lucida Typewriter';
+}
