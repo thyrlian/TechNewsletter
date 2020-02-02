@@ -2,6 +2,8 @@
 
 require 'nokogiri'
 
+directory = 'template/'
+
 def parse_html(filename)
   directory = 'template/'
   return File.open(directory + filename) { |f| Nokogiri::HTML(f) }
@@ -22,4 +24,5 @@ node_content = doc.at('body').add_child(fragment_masthead).first.add_next_siblin
 node_content.add_next_sibling(fragment_imprint)
 node_content.add_child(fragment_article)
 
-File.write('newsletter.html', doc.to_html)
+xsl = Nokogiri::XSLT(File.read(directory + 'pretty-printer.xsl'))
+File.write('newsletter.html', xsl.apply_to(doc))
