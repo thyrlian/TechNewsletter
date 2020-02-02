@@ -11,7 +11,7 @@ body {
   height: auto;
   margin: 0 auto;
   display: block;
-  background: #dbdbdb;
+  background-color: #DBDBDB;
 }
 
 #masthead img {
@@ -75,5 +75,6 @@ body {
 #imprint {
   text-align: center;
   line-height: 150%;
+  color: #525252;
   font-family: 'Courier New','Courier','Lucida Sans Typewriter','Lucida Typewriter';
 }
