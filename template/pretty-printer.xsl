@@ -1,10 +1,10 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-  <xsl:output method="xml" encoding="ISO-8859-1"/>
-  <xsl:param name="indent-increment" select="'   '"/>
+  <xsl:output method="xml" encoding="UTF-8"/>
+  <xsl:param name="indent-increment" select="'  '"/>
 
   <xsl:template name="newline">
     <xsl:text disable-output-escaping="yes">
-</xsl:text>
+    </xsl:text>
   </xsl:template>
 
   <xsl:template match="comment() | processing-instruction()">
