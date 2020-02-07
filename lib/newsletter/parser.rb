@@ -21,7 +21,7 @@ module Newsletter
       end
 
       def get_indent(line)
-        regex = /^(\s+)#{TAG_BEGINNING_DELIMITER}.+#{TAG_ENDING_DELIMITER}/
+        regex = /^(\s+)\S*?/
         match_data = regex.match(line)
         return match_data ? match_data[1].length / INDENT_SIZE : 0
       end
