@@ -1,5 +1,5 @@
 html {
-  padding: 40px;
+  padding: 25px;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -23,8 +23,8 @@ body {
 }
 
 #content {
-  margin-top: 40px;
-  margin-bottom: 40px;
+  margin-top: 30px;
+  margin-bottom: 30px;
   font-family: Helvetica,sans-serif;
 }
 
