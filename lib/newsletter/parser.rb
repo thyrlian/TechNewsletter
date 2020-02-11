@@ -17,7 +17,12 @@ module Newsletter
       def get_tag(line)
         regex = /^\s*?#{TAG_BEGINNING_DELIMITER}(.+)#{TAG_ENDING_DELIMITER}/
         match_data = regex.match(line)
-        return match_data ? match_data[1] : nil
+        if match_data
+          md = match_data[1].strip
+          return md.empty? ? nil : md
+        else
+          return nil
+        end
       end
 
       def get_indent(line)
