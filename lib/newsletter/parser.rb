@@ -31,6 +31,17 @@ module Newsletter
         return match_data ? match_data[1].length / INDENT_SIZE : 0
       end
 
+      def get_value(line)
+        regex = /^\s*?#{TAG_BEGINNING_DELIMITER}.+#{TAG_ENDING_DELIMITER}\s*?(.+)/
+        match_data = regex.match(line)
+        if match_data
+          md = match_data[1].strip
+          return md.empty? ? nil : md
+        else
+          return nil
+        end
+      end
+
       def normalize(line)
         regex = /^\t+/
         match_data = regex.match(line)
