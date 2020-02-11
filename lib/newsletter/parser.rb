@@ -14,8 +14,7 @@ module Newsletter
         end
       end
 
-      def get_tag(line)
-        regex = /^\s*?#{TAG_BEGINNING_DELIMITER}(.+)#{TAG_ENDING_DELIMITER}/
+      def obtain_clean_match_content(regex, line)
         match_data = regex.match(line)
         if match_data
           md = match_data[1].strip
@@ -23,23 +22,20 @@ module Newsletter
         else
           return nil
         end
+      end
+
+      def get_tag(line)
+        obtain_clean_match_content(/^\s*?#{TAG_BEGINNING_DELIMITER}(.+)#{TAG_ENDING_DELIMITER}/, line)
+      end
+
+      def get_value(line)
+        obtain_clean_match_content(/^\s*?#{TAG_BEGINNING_DELIMITER}.+#{TAG_ENDING_DELIMITER}\s*?(.+)/, line)
       end
 
       def get_indent(line)
         regex = /^(\s+)\S*?/
         match_data = regex.match(line)
         return match_data ? match_data[1].length / INDENT_SIZE : 0
-      end
-
-      def get_value(line)
-        regex = /^\s*?#{TAG_BEGINNING_DELIMITER}.+#{TAG_ENDING_DELIMITER}\s*?(.+)/
-        match_data = regex.match(line)
-        if match_data
-          md = match_data[1].strip
-          return md.empty? ? nil : md
-        else
-          return nil
-        end
       end
 
       def normalize(line)
@@ -51,6 +47,12 @@ module Newsletter
           return line
         end
       end
+
+      def is_at_root?(line)
+        return get_indent(line) == 0
+      end
     end
+
+    private_class_method :obtain_clean_match_content
   end
 end
