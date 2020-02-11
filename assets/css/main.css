@@ -32,25 +32,22 @@ body {
   font-size: 1.05em;
 }
 
-.article {
+article {
   margin-bottom: 20px;
 }
 
-.title {
-  margin-bottom: 10px;
-}
-
-.title span {
+header.title > span {
   font-size: 1.5em;
   font-weight: bold;
   color: #3498DB;
 }
 
-.author {
+article .author {
   display: table;
+  margin-top: 10px;
 }
 
-.author img {
+article .author img {
   width: 32px;
   height: auto;
   border-radius: 50%;
@@ -59,7 +56,7 @@ body {
   margin-right: 10px;
 }
 
-.author span {
+article .author span {
   font-size: 1.2em;
   color: #DB7734;
   display: table-cell;
