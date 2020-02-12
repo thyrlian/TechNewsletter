@@ -4,14 +4,20 @@ module Newsletter
     TAG_BEGINNING_DELIMITER = '⇥'
     TAG_ENDING_DELIMITER = '⇤'
 
+    def initialize(file, &block)
+      if (!File.exist?(file))
+        fail(RuntimeError, "#{file} doesn't exist.")
+      end
+
+      File.readlines(file).each do |line|
+        line = self.class.normalize(line)
+        yield(line)
+      end
+    end
+
     class << self
-      def read(file)
-        if (!File.exist?(file))
-          fail(RuntimeError, "#{file} doesn't exist.")
-        end
-        File.readlines(file).each do |line|
-          line = normalize(line)
-        end
+      def analyze(file, &block)
+        new(file, &block)
       end
 
       def obtain_clean_match_content(regex, line)
@@ -53,6 +59,6 @@ module Newsletter
       end
     end
 
-    private_class_method :obtain_clean_match_content
+    private_class_method :new, :obtain_clean_match_content
   end
 end
