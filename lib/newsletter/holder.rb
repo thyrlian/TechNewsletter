@@ -1,40 +1,40 @@
 module Newsletter
   class Holder
     # It is an ordered tree
-    # Each node can have value, child(ren), or both
+    # Each node can have data, child(ren), or both
     # New node should always be added to the end (but proper level)
 
     def initialize
       @tree = {}
     end
 
-    def insert(tree, tag, value, indent)
+    def insert(tree, tag, data, indent)
       last_tag = tree.keys.last
       if last_tag.nil?
-        tree[tag] = {value: value, indent: indent}
+        tree[tag] = {data: data, indent: indent}
       elsif last_tag == :children
-        insert(tree[last_tag], tag, value, indent)
+        insert(tree[last_tag], tag, data, indent)
       else
         last_indent = tree[last_tag][:indent]
         if indent == last_indent
-          tree[tag] = {value: value, indent: indent}
+          tree[tag] = {data: data, indent: indent}
         elsif indent == last_indent + 1
-          insert_to_parent(tree[last_tag], tag, value, indent)
+          insert_to_parent(tree[last_tag], tag, data, indent)
         elsif indent > last_indent + 1
-          insert(tree[last_tag], tag, value, indent)
+          insert(tree[last_tag], tag, data, indent)
         end
       end
     end
 
-    def insert_to_parent(parent, tag, value, indent)
+    def insert_to_parent(parent, tag, data, indent)
       unless parent.has_key?(:children)
         parent[:children] = {}
       end
-      parent[:children][tag] = {value: value, indent: indent}
+      parent[:children][tag] = {data: data, indent: indent}
     end
 
-    def add(tag, value, indent)
-      insert(@tree, tag, value, indent)
+    def add(tag, data, indent)
+      insert(@tree, tag, data, indent)
     end
 
     def rinse

@@ -34,7 +34,7 @@ module Newsletter
         obtain_clean_match_content(/^\s*?#{TAG_BEGINNING_DELIMITER}(.+)#{TAG_ENDING_DELIMITER}/, line)
       end
 
-      def get_value(line)
+      def get_data(line)
         obtain_clean_match_content(/^\s*?#{TAG_BEGINNING_DELIMITER}.+#{TAG_ENDING_DELIMITER}\s*?(.+)/, line)
       end
 
