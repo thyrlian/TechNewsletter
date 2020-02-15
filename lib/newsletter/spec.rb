@@ -1,5 +1,5 @@
 module Newsletter
-  class Holder
+  class Spec
     # It is an ordered tree
     # Each node can have data, child(ren), or both
     # New node should always be added to the end (but proper level)
