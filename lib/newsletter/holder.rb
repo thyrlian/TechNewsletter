@@ -49,8 +49,11 @@ module Newsletter
       end
     end
 
-    def rinse
+    def rinse!
       # Final step, remove all unnecessary indent info
+      traverse(@tree) do |key, value|
+        value.delete(:indent)
+      end
     end
 
     private :insert, :insert_to_parent, :traverse
