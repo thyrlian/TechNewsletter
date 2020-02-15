@@ -37,10 +37,22 @@ module Newsletter
       insert(@tree, tag, data, indent)
     end
 
+    def traverse(tree, &block)
+      # Depth-first search
+      tree.each do |key, value|
+        if value.is_a?(Hash)
+          yield(key, value)
+          if value.has_key?(:children)
+            traverse(value[:children], &block)
+          end
+        end
+      end
+    end
+
     def rinse
       # Final step, remove all unnecessary indent info
     end
 
-    private :insert, :insert_to_parent
+    private :insert, :insert_to_parent, :traverse
   end
 end
