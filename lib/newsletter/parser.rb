@@ -9,10 +9,22 @@ module Newsletter
         fail(RuntimeError, "#{file} doesn't exist.")
       end
 
+      @spec = Spec.new
+
       File.readlines(file).each do |line|
         line = self.class.normalize(line)
+
         yield(line)
+
+        tag = self.class.get_tag(line)
+        if tag
+          data = self.class.get_data(line)
+          indent = self.class.get_indent(line)
+          @spec.add(tag, data, indent)
+        end
       end
+
+      @spec.rinse!
     end
 
     class << self
