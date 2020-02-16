@@ -49,6 +49,12 @@ module Newsletter
       end
     end
 
+    def iterate(&block)
+      traverse(@tree) do |key, value|
+        yield(key, value)
+      end
+    end
+
     def rinse!
       # Final step, remove all unnecessary indent info
       traverse(@tree) do |key, value|

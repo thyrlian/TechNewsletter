@@ -27,6 +27,10 @@ module Newsletter
       @spec.rinse!
     end
 
+    def get_spec
+      return @spec
+    end
+
     class << self
       def analyze(file, &block)
         new(file, &block)
