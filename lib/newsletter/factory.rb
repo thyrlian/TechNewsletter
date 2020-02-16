@@ -37,8 +37,9 @@ module Newsletter
       super
     end
 
-    def print_masthead
+    def print_masthead(img_url)
       fragment_masthead = parse_fragment('masthead.html')
+      fragment_masthead.css('#masthead > a > img').first['src'] = img_url
       @doc.at('body').add_child(fragment_masthead)
     end
 
