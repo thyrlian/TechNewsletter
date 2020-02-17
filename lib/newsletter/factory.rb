@@ -46,6 +46,26 @@ module Newsletter
       @doc.at('body').add_child(fragment_masthead)
     end
 
+    def print_content(node)
+      fragment_content = parse_fragment('content.html')
+      @doc.at('#masthead').add_next_sibling(fragment_content)
+    end
+
+    def print_article(node)
+      title = node[:children]['Title'][:data]
+      author = node[:children]['Author'][:data]
+      author_avatar = node[:children]['Author'][:children]['AuthorAvatar'][:data]
+      outline = node[:children]['Outline'][:data]
+      read_more = node[:children]['ReadMore'][:data]
+      fragment_article = parse_fragment('article.html')
+      fragment_article.css('.title > span').first.content = title
+      fragment_article.css('.author > img').first['src'] = author_avatar
+      fragment_article.css('.author > span').first.content = author
+      fragment_article.css('.outline > p').first.content = outline
+      fragment_article.css('.cta-read-more-button > a').first['href'] = read_more
+      @doc.at('#content').add_child(fragment_article)
+    end
+
     private :parse_html, :parse_fragment
     private_class_method :new
   end
