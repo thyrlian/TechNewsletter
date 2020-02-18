@@ -6,7 +6,7 @@ The engineering way 🤓 of composing a newsletter email 📰📧 in markup lang
 
 **Q**: Why do I name my custom markup language as `.slm`?
 
-**A**: SLM (aka the English word ***slim***) = **S**uper **L**ightweight **M**arkup.  Isn't it sexy?  🤓
+**A**: SLM (aka the English word ***slim***) = **S**uper **L**ightweight **M**arkup.  Isn't it sexy?  🤓  And for the tag delimiter, I've chosen `⇥⇤`, which is rarely used in text content, it means slim as well, just imagine: `⇥)(⇤` it's so vivid!
 
 ## Setup
 
