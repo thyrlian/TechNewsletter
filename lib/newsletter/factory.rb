@@ -75,9 +75,18 @@ module Newsletter
     end
 
     def p_imprint(node)
-      imprint = node[:data]
       fragment_imprint = parse_fragment('imprint.html')
-      fragment_imprint.css('#imprint > span').first.content = imprint
+      if node[:data]
+        fragment_imprint.css('#imprint').first.add_child("<span>#{node[:data]}</span>")
+      elsif node[:children]
+        imprints = []
+        node[:children].each_value do |value|
+          imprints.push(value[:data])
+        end
+        imprints.each do |i|
+          fragment_imprint.css('#imprint').first.add_child("<span>#{i}</span>").first.add_next_sibling('<br/>')
+        end
+      end
       @doc.at('#content').add_next_sibling(fragment_imprint)
     end
 
