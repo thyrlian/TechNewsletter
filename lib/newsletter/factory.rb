@@ -43,6 +43,7 @@ module Newsletter
       super
     end
 
+    # Below private methods are all for adding HTML content
     private
 
     def p_masthead(node)
