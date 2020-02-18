@@ -33,7 +33,7 @@ module Newsletter
       if match_data
         field = match_data[1].downcase
         method = "p_#{field}"
-        if respond_to?(method)
+        if self.class.private_instance_methods.include?(method.intern)
           puts "✎ Printing #{match_data[1]}..."
           send(method, *args)
           return
@@ -42,6 +42,8 @@ module Newsletter
       end
       super
     end
+
+    private
 
     def p_masthead(node)
       link = node[:children]['Link'][:data]
