@@ -17,7 +17,7 @@ module Newsletter
       else
         last_indent = tree[last_tag][:indent]
         if indent == last_indent
-          tree[tag] = {data: data, indent: indent}
+          insert_child(tree, tag, data, indent)
         elsif indent == last_indent + 1
           insert_to_parent(tree[last_tag], tag, data, indent)
         elsif indent > last_indent + 1
@@ -30,7 +30,17 @@ module Newsletter
       unless parent.has_key?(:children)
         parent[:children] = {}
       end
-      parent[:children][tag] = {data: data, indent: indent}
+      insert_child(parent[:children], tag, data, indent)
+    end
+
+    def insert_child(tree, tag, data, indent)
+      num = 0
+      new_tag = tag
+      while tree.has_key?(new_tag)
+        num += 1
+        new_tag = tag + num.to_s
+      end
+      tree[new_tag] = {data: data, indent: indent}
     end
 
     def add(tag, data, indent)
@@ -62,6 +72,6 @@ module Newsletter
       end
     end
 
-    private :insert, :insert_to_parent, :traverse
+    private :insert, :insert_to_parent, :insert_child, :traverse
   end
 end

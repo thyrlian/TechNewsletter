@@ -29,15 +29,21 @@ module Newsletter
     end
 
     def method_missing(name, *args, &block)
-      match_data = /^print_(\w+)/.match(name.to_s)
+      match_data = /^print_([a-zA-Z]+)/.match(name.to_s)
       if match_data
-        field = match_data[1]
+        field = match_data[1].downcase
+        method = "p_#{field}"
+        if respond_to?(method)
+          puts "✎ Printing #{match_data[1]}..."
+          send(method, *args)
+          return
+        end
         puts "⚠ Don't know how to print #{field}, please implement it!"
       end
       super
     end
 
-    def print_masthead(node)
+    def p_masthead(node)
       link = node[:children]['Link'][:data]
       img_url = node[:children]['Image'][:data]
       fragment_masthead = parse_fragment('masthead.html')
@@ -46,12 +52,12 @@ module Newsletter
       @doc.at('body').add_child(fragment_masthead)
     end
 
-    def print_content(node)
+    def p_content(node)
       fragment_content = parse_fragment('content.html')
       @doc.at('#masthead').add_next_sibling(fragment_content)
     end
 
-    def print_article(node)
+    def p_article(node)
       title = node[:children]['Title'][:data]
       author = node[:children]['Author'][:data]
       author_avatar = node[:children]['Author'][:children]['AuthorAvatar'][:data]
