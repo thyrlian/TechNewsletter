@@ -74,6 +74,13 @@ module Newsletter
       @doc.at('#content').add_child(fragment_article)
     end
 
+    def p_imprint(node)
+      imprint = node[:data]
+      fragment_imprint = parse_fragment('imprint.html')
+      fragment_imprint.css('#imprint > span').first.content = imprint
+      @doc.at('#content').add_next_sibling(fragment_imprint)
+    end
+
     private :parse_html, :parse_fragment
     private_class_method :new
   end
