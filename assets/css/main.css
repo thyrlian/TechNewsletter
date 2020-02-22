@@ -47,20 +47,21 @@ article .author {
   margin-top: 10px;
 }
 
+article .author * {
+  display: table-cell;
+  vertical-align: middle;
+}
+
 article .author img {
   width: 32px;
   height: auto;
   border-radius: 50%;
-  display: table-cell;
-  vertical-align: middle;
   margin-right: 10px;
 }
 
 article .author span {
-  font-size: 1.2em;
+  font-size: 16px;
   color: #DB7734;
-  display: table-cell;
-  vertical-align: middle;
 }
 
 .cta-read-more-button a {
