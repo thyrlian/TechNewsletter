@@ -31,6 +31,10 @@ module Newsletter
       def supported_print_methods
         return self.private_instance_methods.grep(/p_\w+/).map { |m| m.to_s.gsub(/p_/, '') }
       end
+
+      def can_print?(component)
+        return supported_print_methods.include?(component.downcase.gsub(/\d+$/, ''))
+      end
     end
 
     def method_missing(name, *args, &block)
@@ -117,6 +121,6 @@ module Newsletter
     end
 
     private :parse_html, :parse_fragment
-    private_class_method :new
+    private_class_method :new, :supported_print_methods
   end
 end

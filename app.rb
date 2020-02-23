@@ -7,7 +7,7 @@ factory = Factory.run
 spec = Parser.analyze('example.slm'){}.spec
 
 spec.iterate do |key, value|
-  if Factory.supported_print_methods.include?(key.downcase.gsub(/\d+$/, ''))
+  if Factory.can_print?(key)
     factory.send("print_#{key}", value)
   end
 end
