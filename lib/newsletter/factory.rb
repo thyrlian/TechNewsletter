@@ -20,11 +20,16 @@ module Newsletter
       puts "⚡ Generating #{output}..."
       xsl = Nokogiri::XSLT(File.read(@@directory + 'pretty-printer.xsl'))
       File.write(output, xsl.apply_to(@doc))
+      puts '☺ Done!'
     end
 
     class << self
       def run
         new()
+      end
+
+      def supported_print_methods
+        return self.private_instance_methods.grep(/p_\w+/).map { |m| m.to_s.gsub(/p_/, '') }
       end
     end
 
