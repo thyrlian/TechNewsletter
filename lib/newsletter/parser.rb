@@ -4,6 +4,8 @@ module Newsletter
     TAG_BEGINNING_DELIMITER = '⇥'
     TAG_ENDING_DELIMITER = '⇤'
 
+    attr_reader :spec
+
     def initialize(file, &block)
       if (!File.exist?(file))
         fail(RuntimeError, "#{file} doesn't exist.")
@@ -25,10 +27,6 @@ module Newsletter
       end
 
       @spec.rinse!
-    end
-
-    def get_spec
-      return @spec
     end
 
     class << self
