@@ -28,7 +28,7 @@ Literally, there is no easier way than this one.
 
 * Add your own or modify existing HTML fragment inside [`templates` directory](https://github.com/thyrlian/TechNewsletter/tree/master/templates)
 
-* Add or modify corresponding `p_*` (*p* stands for print) private method in [`Factory` class](https://github.com/thyrlian/TechNewsletter/blob/master/lib/newsletter/factory.rb).  Including two major behavior:
+* Add or modify corresponding `print_*` private method in [`Factory` class](https://github.com/thyrlian/TechNewsletter/blob/master/lib/newsletter/factory.rb).  Including two major behavior:
 
   - Parsing the tree data structure from the custom markup language (`.slm`)
 

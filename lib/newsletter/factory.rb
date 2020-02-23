@@ -20,7 +20,7 @@ module Newsletter
       name = component.gsub(/\d+$/, '')
       name_intern = name.downcase
       if self.class.supported_print_methods.include?(name_intern)
-        method = "p_#{name_intern}"
+        method = "print_#{name_intern}"
         puts "✎ Printing #{name}..."
         send(method, content)
       end
@@ -39,14 +39,14 @@ module Newsletter
       end
 
       def supported_print_methods
-        return self.private_instance_methods.grep(/p_\w+/).map { |m| m.to_s.gsub(/p_/, '') }
+        return self.private_instance_methods.grep(/print_\w+/).map { |m| m.to_s.gsub(/print_/, '') }
       end
     end
 
     # Below private methods are all for adding HTML content
     private
 
-    def p_masthead(node)
+    def print_masthead(node)
       link = node[:children]['Link'][:data]
       img_url = node[:children]['Image'][:data]
       fragment_masthead = parse_fragment('masthead.html')
@@ -55,12 +55,12 @@ module Newsletter
       @doc.at('body').add_child(fragment_masthead)
     end
 
-    def p_content(node)
+    def print_content(node)
       fragment_content = parse_fragment('content.html')
       @doc.at('#masthead').add_next_sibling(fragment_content)
     end
 
-    def p_article(node)
+    def print_article(node)
       title = node[:children]['Title'][:data]
       author = node[:children]['Author'][:data]
       author_tree = node[:children]['Author'][:children]
@@ -95,7 +95,7 @@ module Newsletter
       @doc.at('#content').add_child(fragment_article)
     end
 
-    def p_imprint(node)
+    def print_imprint(node)
       fragment_imprint = parse_fragment('imprint.html')
       if node[:data]
         fragment_imprint.css('#imprint').first.add_child("<span>#{node[:data]}</span>")
