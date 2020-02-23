@@ -16,6 +16,12 @@ module Newsletter
       Nokogiri::HTML::DocumentFragment.parse(File.read(@@directory + filename))
     end
 
+    def print(component, content)
+      if self.class.supported_print_methods.include?(component.downcase.gsub(/\d+$/, ''))
+        send("print_#{component}", content)
+      end
+    end
+
     def finish(output = 'newsletter.html')
       puts "⚡ Generating #{output}..."
       xsl = Nokogiri::XSLT(File.read(@@directory + 'pretty-printer.xsl'))
@@ -30,10 +36,6 @@ module Newsletter
 
       def supported_print_methods
         return self.private_instance_methods.grep(/p_\w+/).map { |m| m.to_s.gsub(/p_/, '') }
-      end
-
-      def can_print?(component)
-        return supported_print_methods.include?(component.downcase.gsub(/\d+$/, ''))
       end
     end
 
@@ -121,6 +123,6 @@ module Newsletter
     end
 
     private :parse_html, :parse_fragment
-    private_class_method :new, :supported_print_methods
+    private_class_method :new
   end
 end
