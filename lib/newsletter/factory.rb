@@ -17,8 +17,12 @@ module Newsletter
     end
 
     def print(component, content)
-      if self.class.supported_print_methods.include?(component.downcase.gsub(/\d+$/, ''))
-        send("print_#{component}", content)
+      name = component.gsub(/\d+$/, '')
+      name_intern = name.downcase
+      if self.class.supported_print_methods.include?(name_intern)
+        method = "p_#{name_intern}"
+        puts "✎ Printing #{name}..."
+        send(method, content)
       end
     end
 
@@ -37,21 +41,6 @@ module Newsletter
       def supported_print_methods
         return self.private_instance_methods.grep(/p_\w+/).map { |m| m.to_s.gsub(/p_/, '') }
       end
-    end
-
-    def method_missing(name, *args, &block)
-      match_data = /^print_([a-zA-Z]+)/.match(name.to_s)
-      if match_data
-        field = match_data[1].downcase
-        method = "p_#{field}"
-        if self.class.private_instance_methods.include?(method.intern)
-          puts "✎ Printing #{match_data[1]}..."
-          send(method, *args)
-          return
-        end
-        puts "⚠ Don't know how to print #{field}, please implement it!"
-      end
-      super
     end
 
     # Below private methods are all for adding HTML content
