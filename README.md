@@ -34,7 +34,7 @@ Literally, there is no easier way than this one.
 
   - Rendering HTML fragment
 
-  - Run code to compile `.slm` to a fabulous HTML page
+* Run code to compile `.slm` to a fabulous HTML page
 
 ## Test
 
