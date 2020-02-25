@@ -2,6 +2,8 @@
 
 The engineering way 🤓 of composing a newsletter email 📰📧 in markup language.
 
+<img src="https://github.com/thyrlian/TechNewsletter/blob/master/assets/images/Intro.png?raw=true">
+
 ## Philosophy
 
 **Q**: Why do I name my custom markup language as `.slm`?
