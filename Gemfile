@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'nokogiri', '~> 1.10.7'
+gem 'nokogiri', '~> 1.10.8'
 
 group :test do
   gem 'rake', '~> 13.0.1'
