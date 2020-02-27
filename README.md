@@ -6,6 +6,10 @@ The engineering way 🤓 of composing a newsletter email 📰📧 in markup lang
 
 ## Philosophy
 
+**Q**: Why not to use any email marketing automation platform?
+
+**A**: Drag and click?  Come on, we're engineers, there is a better way.  Limited features for editing?  They are, but we don't.  We offer free, open source software, with maximum flexibility for customization.
+
 **Q**: Why do I name my custom markup language as `.slm`?
 
 **A**: SLM (aka the English word ***slim***) = **S**uper **L**ightweight **M**arkup.  Isn't it sexy?  🤓  And for the tag delimiter, I've chosen `⇥⇤`, which is rarely used in text content, it means slim as well, just imagine: `⇥)(⇤` it's so vivid!
