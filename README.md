@@ -45,9 +45,3 @@ Literally, there is no easier way than this one.
 ## Test
 
 To run unit test: `rake test`
-
-## Compatibility
-
-* Inline CSS is not rendered properly in below email clients:
-
-  - [Airmail](https://airmailapp.com/)
