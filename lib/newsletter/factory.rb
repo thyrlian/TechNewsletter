@@ -1,4 +1,5 @@
 require 'nokogiri'
+require 'premailer'
 
 module Newsletter
   class Factory
@@ -26,21 +27,19 @@ module Newsletter
       end
     end
 
-    def apply_internal_css
-      puts "⚘ Applying internal CSS..."
-      @doc.css('head > link[rel="stylesheet"]').each do |link|
-        File.open(link['href']) do |f|
-          css = "<style>\n#{f.read}</style>"
-          link.replace(css)
-        end
+    def apply_inline_css(html)
+      puts "⚘ Applying inline CSS..."
+      premailer = Premailer.new(html, :warn_level => Premailer::Warnings::SAFE)
+      File.open(html, "w") do |f|
+        f.puts premailer.to_inline_css
       end
     end
 
     def finish(output = 'newsletter.html')
-      apply_internal_css
       puts "⚡ Generating #{output}..."
       xsl = Nokogiri::XSLT(File.read(@@directory + 'pretty-printer.xsl'))
       File.write(output, xsl.apply_to(@doc))
+      apply_inline_css(output)
       puts '☺ Done!'
     end
 
@@ -122,7 +121,7 @@ module Newsletter
       @doc.at('#content').add_next_sibling(fragment_imprint)
     end
 
-    private :parse_html, :parse_fragment, :apply_internal_css
+    private :parse_html, :parse_fragment, :apply_inline_css
     private_class_method :new
   end
 end

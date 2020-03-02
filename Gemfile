@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'nokogiri', '~> 1.10.8'
+gem 'premailer', '~> 1.11', '>= 1.11.1'
 
 group :test do
   gem 'rake', '~> 13.0.1'
