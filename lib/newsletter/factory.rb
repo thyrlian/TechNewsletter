@@ -26,7 +26,18 @@ module Newsletter
       end
     end
 
+    def apply_internal_css
+      puts "⚘ Applying internal CSS..."
+      @doc.css('head > link[rel="stylesheet"]').each do |link|
+        File.open(link['href']) do |f|
+          css = "<style>\n#{f.read}</style>"
+          link.replace(css)
+        end
+      end
+    end
+
     def finish(output = 'newsletter.html')
+      apply_internal_css
       puts "⚡ Generating #{output}..."
       xsl = Nokogiri::XSLT(File.read(@@directory + 'pretty-printer.xsl'))
       File.write(output, xsl.apply_to(@doc))
@@ -111,7 +122,7 @@ module Newsletter
       @doc.at('#content').add_next_sibling(fragment_imprint)
     end
 
-    private :parse_html, :parse_fragment
+    private :parse_html, :parse_fragment, :apply_internal_css
     private_class_method :new
   end
 end
