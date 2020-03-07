@@ -59,3 +59,7 @@ To run unit test: `rake test`
   - Workaround: Route the CSS file hosted on GitHub via a free open source CDN such as [jsDelivr](https://www.jsdelivr.com/?docs=gh), which will eventually respond it with the proper MIME type text/css.  Just like this: `<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/USERNAME/REPOSITORY/.../YOUR.CSS" />`
 
 * **Inline CSS** can not be rendered properly in some email clients.
+
+## License
+
+Copyright (c) 2016-2020 Jing Li.  It is released under the [MIT License](https://opensource.org/licenses/MIT).  See the [LICENSE](https://raw.githubusercontent.com/thyrlian/TechNewsletter/master/LICENSE) file for details.
