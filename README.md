@@ -62,7 +62,7 @@ To run unit test: `rake test`
 
 * Verified email clients:
 
-  - [Gmail](https://www.google.com/gmail/) (Web, iOS)
+  - [Gmail](https://www.google.com/gmail/) (Web, Android, iOS)
 
   - [Airmail](https://airmailapp.com/) (macOS)
 
