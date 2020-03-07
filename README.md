@@ -60,6 +60,14 @@ To run unit test: `rake test`
 
 * **Inline CSS** can not be rendered properly in some email clients.
 
+* Verified email clients:
+
+  - [Gmail](https://www.google.com/gmail/) (Web, iOS)
+
+  - [Airmail](https://airmailapp.com/) (macOS)
+
+  - [Apple Mail](https://en.wikipedia.org/wiki/Apple_Mail) (macOS, iOS)
+
 ## License
 
 Copyright (c) 2016-2020 Jing Li.  It is released under the [MIT License](https://opensource.org/licenses/MIT).  See the [LICENSE](https://raw.githubusercontent.com/thyrlian/TechNewsletter/master/LICENSE) file for details.  Additionally, you must give credit by providing a link to this repository at the footer of your generated newsletter.  Thank you.
