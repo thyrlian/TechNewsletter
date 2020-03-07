@@ -45,3 +45,17 @@ Literally, there is no easier way than this one.
 ## Test
 
 To run unit test: `rake test`
+
+## Compatibility
+
+* **External CSS**: When you host the CSS file on GitHub (not [GitHub Pages](https://pages.github.com/)), even if you specify `type="text/css"`, GitHub will respond the CSS file with MIME type `text/plain`, and your browser won't be able to render the CSS.
+
+  - Chrome: `Cross-Origin Read Blocking (CORB) blocked cross-origin response with MIME type text/plain.`
+
+  - Firefox: `The resource was blocked due to MIME type (“text/plain”) mismatch (X-Content-Type-Options: nosniff).`
+
+  - Safari: `Did not parse stylesheet because non CSS MIME types are not allowed when 'X-Content-Type: nosniff' is given.`
+
+  - Workaround: Route the CSS file hosted on GitHub via a free open source CDN such as [jsDelivr](https://www.jsdelivr.com/?docs=gh), which will eventually respond it with the proper MIME type text/css.  Just like this: `<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/USERNAME/REPOSITORY/.../YOUR.CSS" />`
+
+* **Inline CSS** can not be rendered properly in some email clients.
