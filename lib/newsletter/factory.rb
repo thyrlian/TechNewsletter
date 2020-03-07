@@ -5,8 +5,9 @@ module Newsletter
   class Factory
     @@directory = 'templates/'
 
-    def initialize
+    def initialize(params = {})
       @doc = parse_html('base.html')
+      @inline_css = params.fetch(:inline_css, true)
     end
 
     def parse_html(filename)
@@ -39,13 +40,13 @@ module Newsletter
       puts "⚡ Generating #{output}..."
       xsl = Nokogiri::XSLT(File.read(@@directory + 'pretty-printer.xsl'))
       File.write(output, xsl.apply_to(@doc))
-      apply_inline_css(output)
+      apply_inline_css(output) if @inline_css
       puts '☺ Done!'
     end
 
     class << self
-      def run
-        new()
+      def run(params = {})
+        new(params)
       end
 
       def supported_print_methods
