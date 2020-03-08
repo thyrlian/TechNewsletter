@@ -70,6 +70,18 @@ article .author span {
   color: #DB3498;
 }
 
+#social-media {
+  text-align: center;
+  font-size: 24px;
+  letter-spacing: 12px;
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+#social-media a {
+  text-decoration: none;
+}
+
 #imprint {
   text-align: center;
   line-height: 150%;

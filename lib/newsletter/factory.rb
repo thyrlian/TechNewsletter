@@ -106,6 +106,35 @@ module Newsletter
       @doc.at('#content').add_child(fragment_article)
     end
 
+    def print_socialmedia(node)
+      fragment_social_media_script = parse_fragment('social-media-script.html')
+      @doc.at('head').add_child(fragment_social_media_script)
+      fragment_social_media = parse_fragment('social-media.html')
+      node[:children].each do |media, username|
+        element = nil
+        case media
+        when "Twitter"
+          element = %Q(<a href="https://twitter.com/#{username[:data]}"><i class="fab fa-twitter"> </i></a>)
+        when "Facebook"
+          element = %Q(<a href="https://www.facebook.com/#{username[:data]}"><i class="fab fa-facebook"> </i></a>)
+        when "Instagram"
+          element = %Q(<a href="https://www.instagram.com/#{username[:data]}"><i class="fab fa-instagram"> </i></a>)
+        when "GitHub"
+          element = %Q(<a href="https://github.com/#{username[:data]}"><i class="fab fa-github"> </i></a>)
+        when "Medium"
+          element = %Q(<a href="https://medium.com/@#{username[:data]}"><i class="fab fa-medium"> </i></a>)
+        when "LinkedIn"
+          element = %Q(<a href="https://www.linkedin.com/in/#{username[:data]}"><i class="fab fa-linkedin-in"> </i></a>)
+        when "Link"
+          element = %Q(<a href="#{username[:data]}"><i class="fas fa-link"> </i></a>)
+        end
+        unless element.nil?
+          fragment_social_media.css('#social-media').first.add_child(element)
+        end
+      end
+      @doc.at('#content').add_next_sibling(fragment_social_media)
+    end
+
     def print_imprint(node)
       fragment_imprint = parse_fragment('imprint.html')
       if node[:data]
@@ -119,7 +148,7 @@ module Newsletter
           fragment_imprint.css('#imprint').first.add_child("<span>#{i}</span>").first.add_next_sibling('<br/>')
         end
       end
-      @doc.at('#content').add_next_sibling(fragment_imprint)
+      (@doc.at('#social-media') || @doc.at('#content')).add_next_sibling(fragment_imprint)
     end
 
     private :parse_html, :parse_fragment, :apply_inline_css
