@@ -60,6 +60,8 @@ To run unit test: `rake test`
 
 * **Inline CSS** can not be rendered properly in some email clients.
 
+* **Embedded Image** vs. **Linked Image**: For the sake of better support, this tool only uses linked image at the moment.  To learn more details regarding the comparison, please read [this](https://blog.mailtrap.io/embedding-images-in-html-email-have-the-rules-changed/).
+
 ✅ Verified email clients:
 
 * [Gmail](https://www.google.com/gmail/) (Web, Android, iOS)
