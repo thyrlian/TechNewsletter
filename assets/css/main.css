@@ -82,6 +82,14 @@ article .author span {
   text-decoration: none;
 }
 
+#social-media a:link, #social-media a:visited {
+  color: #a934db;
+}
+
+#social-media a:hover {
+  color: #dbc234;
+}
+
 #imprint {
   text-align: center;
   line-height: 150%;
