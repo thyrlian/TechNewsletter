@@ -73,3 +73,7 @@ To run unit test: `rake test`
 ## License
 
 Copyright (c) 2016-2020 Jing Li.  It is released under the [MIT License](https://opensource.org/licenses/MIT).  See the [LICENSE](https://raw.githubusercontent.com/thyrlian/TechNewsletter/master/LICENSE) file for details.  Additionally, you must give credit by providing a link to this repository at the footer of your generated newsletter.  Thank you.
+
+## Attribution
+
+The social media icons used in this project are from [Font Awesome](https://fontawesome.com/) licensed under [CC BY 4.0 License](https://creativecommons.org/licenses/by/4.0/).
