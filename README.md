@@ -32,9 +32,9 @@ Literally, there is no easier way than this one.
 
   - Please refer to [this example](https://raw.githubusercontent.com/thyrlian/TechNewsletter/master/example.slm)
 
-* [***Optional***] Add your own or modify existing HTML fragment inside [`templates` directory](https://github.com/thyrlian/TechNewsletter/tree/master/templates)
+* [ ***Optional*** ] Add your own or modify existing HTML fragment inside [`templates` directory](https://github.com/thyrlian/TechNewsletter/tree/master/templates)
 
-* [***Optional***] Add or modify corresponding `print_*` private method in [`Factory` class](https://github.com/thyrlian/TechNewsletter/blob/master/lib/newsletter/factory.rb).  Including two major behavior:
+* [ ***Optional*** ] Add or modify corresponding `*Printer` class (which inherits [`Printer` class](https://github.com/thyrlian/TechNewsletter/blob/master/lib/newsletter/printers/printer.rb)) under [`printers` directory](https://github.com/thyrlian/TechNewsletter/tree/master/lib/newsletter/printers).  Including two major behavior:
 
   - Parsing the tree data structure from the custom markup language (`.slm`)
 
