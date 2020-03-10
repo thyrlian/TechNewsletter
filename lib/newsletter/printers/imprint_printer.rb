@@ -2,7 +2,7 @@ module Newsletter
   class ImprintPrinter < Printer
     class << self
       def print(doc, node)
-        fragment_imprint = self.parse_fragment('imprint.html')
+        fragment_imprint = MLParserWrapper.parse_fragment('imprint.html')
         if node[:data]
           fragment_imprint.css('#imprint').first.add_child("<span>#{node[:data]}</span>")
         elsif node[:children]

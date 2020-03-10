@@ -1,10 +1,9 @@
-require 'nokogiri'
 require 'premailer'
 
 module Newsletter
   class Factory
     def initialize(params = {})
-      @doc = parse_html('base.html')
+      @doc = MLParserWrapper.parse_html('base.html')
       @inline_css = params.fetch(:inline_css, true)
       @supported_printers = get_supported_printers
     end
@@ -19,10 +18,6 @@ module Newsletter
         end
       end
       return printers
-    end
-
-    def parse_html(filename)
-      File.open(Constants.templates_directory + filename) { |f| Nokogiri::HTML(f) }
     end
 
     def print(component, content)
@@ -43,8 +38,7 @@ module Newsletter
 
     def finish(output = 'newsletter.html')
       puts "⚡ Generating #{output}..."
-      xsl = Nokogiri::XSLT(File.read(Constants.templates_directory + 'pretty-printer.xsl'))
-      File.write(output, xsl.apply_to(@doc))
+      File.write(output, MLParserWrapper.parse_xsl('pretty-printer.xsl').apply_to(@doc))
       apply_inline_css(output) if @inline_css
       puts '☺ Done!'
     end
@@ -55,7 +49,7 @@ module Newsletter
       end
     end
 
-    private :get_supported_printers, :parse_html, :apply_inline_css
+    private :get_supported_printers, :apply_inline_css
     private_class_method :new
   end
 end

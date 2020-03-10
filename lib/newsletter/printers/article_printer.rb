@@ -17,7 +17,7 @@ module Newsletter
         end
         outline = node[:children]['Outline'][:data]
         read_more = node[:children]['ReadMore'][:data]
-        fragment_article = self.parse_fragment('article.html')
+        fragment_article = MLParserWrapper.parse_fragment('article.html')
         fragment_article.css('.title > span').first.content = title
         fragment_article.css('.author > span').first.content = author
         fragment_article.css('.outline > p').first.content = outline
