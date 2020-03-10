@@ -4,7 +4,7 @@ include Newsletter
 
 factory = Factory.run(:inline_css => false)
 
-spec = Parser.analyze('example.slm'){}.spec
+spec = SLMParser.analyze('example.slm'){}.spec
 
 spec.iterate do |key, value|
   factory.print(key, value)

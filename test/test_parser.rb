@@ -1,19 +1,19 @@
 require_relative 'helper'
 
-class TestParser < Minitest::Test
+class TestSLMParser < Minitest::Test
   def test_constructor_with_nonexistent_file
     assert_raises RuntimeError do
-      Parser.analyze('test/xyz.slm') {}
+      SLMParser.analyze('test/xyz.slm') {}
     end
   end
 
   def test_constructor_with_empty_file
-    parser = Parser.analyze('test/empty.slm') {}
+    parser = SLMParser.analyze('test/empty.slm') {}
     assert(parser.spec.instance_variable_get(:@tree).empty?)
   end
 
   def test_constructor
-    parser = Parser.analyze('test/test.slm') {}
+    parser = SLMParser.analyze('test/test.slm') {}
     tree = parser.spec.instance_variable_get(:@tree)
     assert_equal(['Name', 'Date', 'Masthead', 'Test', 'CheckItOut', 'Article', 'Imprint'], tree.keys)
     assert_equal([:data], tree['Name'].keys)
@@ -26,26 +26,26 @@ class TestParser < Minitest::Test
   end
 
   def test_normalize
-    assert_equal("Foobar", Parser.normalize("Foobar"))
-    assert_equal(" Foobar", Parser.normalize(" Foobar"))
-    assert_equal("  Foobar", Parser.normalize("  Foobar"))
-    assert_equal("  Foobar", Parser.normalize("\tFoobar"))
-    assert_equal("    Foobar", Parser.normalize("\t\tFoobar"))
-    assert_equal("      Foobar", Parser.normalize("\t\t\tFoobar"))
-    assert_equal("Foo  Bar", Parser.normalize("Foo  Bar"))
-    assert_equal("Foo\tBar", Parser.normalize("Foo\tBar"))
-    assert_equal("Foo\t\tBar", Parser.normalize("Foo\t\tBar"))
+    assert_equal("Foobar", SLMParser.normalize("Foobar"))
+    assert_equal(" Foobar", SLMParser.normalize(" Foobar"))
+    assert_equal("  Foobar", SLMParser.normalize("  Foobar"))
+    assert_equal("  Foobar", SLMParser.normalize("\tFoobar"))
+    assert_equal("    Foobar", SLMParser.normalize("\t\tFoobar"))
+    assert_equal("      Foobar", SLMParser.normalize("\t\t\tFoobar"))
+    assert_equal("Foo  Bar", SLMParser.normalize("Foo  Bar"))
+    assert_equal("Foo\tBar", SLMParser.normalize("Foo\tBar"))
+    assert_equal("Foo\t\tBar", SLMParser.normalize("Foo\t\tBar"))
   end
 
   def test_is_at_root_positive
-    assert(Parser.is_at_root?('Article'))
-    assert(Parser.is_at_root?('⇥Article⇤'))
-    assert(Parser.is_at_root?(' ⇥Article⇤'))
+    assert(SLMParser.is_at_root?('Article'))
+    assert(SLMParser.is_at_root?('⇥Article⇤'))
+    assert(SLMParser.is_at_root?(' ⇥Article⇤'))
   end
 
   def test_is_at_root_negative
-    refute(Parser.is_at_root?('  ⇥Article⇤'))
-    refute(Parser.is_at_root?('   ⇥Article⇤'))
-    refute(Parser.is_at_root?('    ⇥Article⇤'))
+    refute(SLMParser.is_at_root?('  ⇥Article⇤'))
+    refute(SLMParser.is_at_root?('   ⇥Article⇤'))
+    refute(SLMParser.is_at_root?('    ⇥Article⇤'))
   end
 end

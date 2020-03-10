@@ -1,5 +1,5 @@
 module Newsletter
-  class Parser
+  class SLMParser
     INDENT_SIZE = 2
     TAG_BEGINNING_DELIMITER = '⇥'
     TAG_ENDING_DELIMITER = '⇤'
