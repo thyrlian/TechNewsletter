@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 require './lib/newsletter.rb'
 
 include Newsletter
