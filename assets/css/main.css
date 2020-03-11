@@ -72,22 +72,20 @@ article .author span {
 
 #social-media {
   text-align: center;
-  font-size: 24px;
-  letter-spacing: 12px;
   margin-top: 24px;
   margin-bottom: 24px;
 }
 
 #social-media a {
   text-decoration: none;
+  margin-left: 12px;
+  margin-right: 12px;
 }
 
-#social-media a:link, #social-media a:visited {
-  color: #a934db;
-}
-
-#social-media a:hover {
-  color: #dbc234;
+#social-media svg {
+  width: 24px;
+  height: 24px;
+  fill: #5634db;
 }
 
 #imprint {
