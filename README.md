@@ -62,6 +62,8 @@ To run unit test: `rake test`
 
 * **Embedded Image** vs. **Linked Image**: For the sake of better support, this tool only uses linked image at the moment.  To learn more details regarding the comparison, please read [this](https://blog.mailtrap.io/embedding-images-in-html-email-have-the-rules-changed/).
 
+* **SVG** is supported in some email clients, as stated [here](https://www.campaignmonitor.com/css/text-fonts/svg/).  Furthermore, depends on the way how you use it, the [support behavior](https://css-tricks.com/a-guide-on-svg-support-in-email/) from the same client may change.  Last, let's say at the moment Gmail blocks SVG by its proxy, but if you read the email in another client (e.g. Airmail), which links to your Gmail account, you could still view the SVG without any problem.
+
 ✅ Verified email clients:
 
 * [Gmail](https://www.google.com/gmail/) (Web, Android, iOS)
