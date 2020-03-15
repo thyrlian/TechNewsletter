@@ -1,5 +1,5 @@
 module Newsletter
-  class SocialMedia
+  class SocialMediaSVG
     class << self
       def create_twitter_link(username)
         url = "https://twitter.com/#{username}"
