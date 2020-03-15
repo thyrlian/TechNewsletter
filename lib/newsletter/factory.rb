@@ -37,6 +37,7 @@ module Newsletter
     end
 
     def finish(output = 'newsletter.html')
+      print('Attribution', nil)
       puts "⚡ Generating #{output}..."
       File.write(output, MLParserWrapper.parse_xsl('pretty-printer.xsl').apply_to(@doc))
       apply_inline_css(output) if @inline_css

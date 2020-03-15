@@ -99,3 +99,12 @@ article .author span {
   color: #525252;
   font-family: 'Courier New','Courier','Lucida Sans Typewriter','Lucida Typewriter';
 }
+
+#attribution {
+  text-align: center;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  line-height: 150%;
+  color: #525252;
+  font-family: 'Courier New','Courier','Lucida Sans Typewriter','Lucida Typewriter';
+}
