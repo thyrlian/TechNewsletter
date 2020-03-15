@@ -40,7 +40,7 @@ Literally, there is no easier way than this one.
 
   - Rendering HTML fragment
 
-* Run code to compile `.slm` to a fabulous HTML page
+* Run [code](https://github.com/thyrlian/TechNewsletter/blob/master/app.rb) to compile `.slm` to a fabulous HTML page
 
 ## Test
 
