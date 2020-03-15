@@ -1,51 +1,52 @@
 module Newsletter
-  class SocialMediaPNG
+  class SocialMediaPNG < SocialMedia
     @@dir = 'assets/images/social_media/'
 
     class << self
       def create_twitter_link(username)
-        url = "https://twitter.com/#{username}"
-        img = @@dir + 'Twitter.png'
+        url = super
+        img = 'Twitter.png'
         return create_icon_link(url, img)
       end
 
       def create_facebook_link(username)
-        url = "https://www.facebook.com/#{username}"
-        img = @@dir + 'Facebook.png'
+        url = super
+        img = 'Facebook.png'
         return create_icon_link(url, img)
       end
 
       def create_instagram_link(username)
-        url = "https://www.instagram.com/#{username}"
-        img = @@dir + 'Instagram.png'
+        url = super
+        img = 'Instagram.png'
         return create_icon_link(url, img)
       end
 
       def create_github_link(username)
-        url = "https://github.com/#{username}"
-        img = @@dir + 'GitHub.png'
+        url = super
+        img = 'GitHub.png'
         return create_icon_link(url, img)
       end
 
       def create_medium_link(username)
-        url = "https://medium.com/@#{username}"
-        img = @@dir + 'Medium.png'
+        url = super
+        img = 'Medium.png'
         return create_icon_link(url, img)
       end
 
       def create_linkedin_link(username)
-        url = "https://www.linkedin.com/in/#{username}"
-        img = @@dir + 'LinkedIn.png'
+        url = super
+        img = 'LinkedIn.png'
         return create_icon_link(url, img)
       end
 
       def create_link_link(url)
-        img = @@dir + 'Link.png'
+        url = super
+        img = 'Link.png'
         return create_icon_link(url, img)
       end
 
       def create_icon_link(url, img)
-        return %Q(<a href="#{url}"><img width="24px" height="auto" src="#{img}" /></a>)
+        return %Q(<a href="#{url}"><img width="24px" height="auto" src="#{@@dir + img}" /></a>)
       end
     end
 
