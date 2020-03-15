@@ -37,6 +37,11 @@ body {
   font-size: 1.05em;
 }
 
+div.article {
+  display: block;
+  margin-bottom: 20px;
+}
+
 article {
   margin-bottom: 20px;
 }
