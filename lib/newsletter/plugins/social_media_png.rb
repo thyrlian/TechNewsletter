@@ -1,6 +1,6 @@
 module Newsletter
   class SocialMediaPNG < SocialMedia
-    @@dir = 'assets/images/social_media/'
+    @@dir = 'https://raw.githubusercontent.com/thyrlian/TechNewsletter/master/assets/images/social_media/'
 
     class << self
       def create_twitter_link(username)
