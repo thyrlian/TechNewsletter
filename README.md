@@ -1,3 +1,5 @@
+![headline](assets/images/TechNewsletter-logo.png)
+
 # TechNewsletter
 
 The engineering way 🤓 of composing a responsive design newsletter email 📰📧 in markup language.
