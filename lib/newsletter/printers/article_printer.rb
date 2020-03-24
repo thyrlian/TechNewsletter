@@ -20,7 +20,7 @@ module Newsletter
           end
         end
         outline = node[:children]['Outline'][:data]
-        read_more = node[:children]['ReadMore'][:data]
+        read_more = node[:children].fetch('ReadMore', {}).fetch(:data, nil)
         fragment_article = MLParserWrapper.parse_fragment('article.html')
         fragment_article.css('.title > span').first.content = title
         if author.nil?
@@ -40,7 +40,11 @@ module Newsletter
           end
         end
         fragment_article.css('.outline > p').first.content = outline
-        fragment_article.css('.cta-read-more-button > a').first['href'] = read_more
+        if read_more.nil?
+          fragment_article.css('.cta-read-more-button').remove
+        else
+          fragment_article.css('.cta-read-more-button > a').first['href'] = read_more
+        end
         doc.at('#content').add_child(fragment_article)
       end
     end
