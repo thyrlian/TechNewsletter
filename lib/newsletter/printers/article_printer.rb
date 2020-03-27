@@ -3,6 +3,18 @@ module Newsletter
     class << self
       def print(doc, node)
         title = node[:children]['Title'][:data]
+        author, author_avatar, author_link = get_author(node)
+        outline = node[:children]['Outline'][:data]
+        read_more = node[:children].fetch('ReadMore', {}).fetch(:data, nil)
+        fragment_article = MLParserWrapper.parse_fragment('article.html')
+        fragment_article.css('.title > span').first.content = title
+        put_author(fragment_article, author, author_avatar, author_link)
+        fragment_article.css('.outline > p').first.content = outline
+        put_read_more(fragment_article, read_more)
+        doc.at('#content').add_child(fragment_article)
+      end
+
+      def get_author(node)
         author = node[:children].fetch('Author', {}).fetch(:data, nil)
         unless author.nil?
           author_tree = node[:children]['Author'][:children]
@@ -19,34 +31,37 @@ module Newsletter
             end
           end
         end
-        outline = node[:children]['Outline'][:data]
-        read_more = node[:children].fetch('ReadMore', {}).fetch(:data, nil)
-        fragment_article = MLParserWrapper.parse_fragment('article.html')
-        fragment_article.css('.title > span').first.content = title
+        return author, author_avatar, author_link
+      end
+
+      def put_author(fragment, author, author_avatar, author_link)
         if author.nil?
-          fragment_article.css('.author').remove
+          fragment.css('.author').remove
         else
-          fragment_article.css('.author > span').first.content = author
+          fragment.css('.author > span').first.content = author
           if author_avatar.nil?
-            fragment_article.css('.author > img').remove
+            fragment.css('.author > img').remove
           else
-            fragment_article.css('.author > img').first['src'] = author_avatar
+            fragment.css('.author > img').first['src'] = author_avatar
           end
           unless author_link.nil?
-            author_element = fragment_article.css('.author > span').first
+            author_element = fragment.css('.author > span').first
             author_element.replace('<a>' + author_element.to_xml + '</a>')
-            fragment_article.css('.author > a').first['href'] = author_link
-            fragment_article.css('.author > a').first['style'] = 'text-decoration: none;'
+            fragment.css('.author > a').first['href'] = author_link
+            fragment.css('.author > a').first['style'] = 'text-decoration: none;'
           end
         end
-        fragment_article.css('.outline > p').first.content = outline
+      end
+
+      def put_read_more(fragment, read_more)
         if read_more.nil?
-          fragment_article.css('.cta-read-more-button').remove
+          fragment.css('.cta-read-more-button').remove
         else
-          fragment_article.css('.cta-read-more-button > a').first['href'] = read_more
+          fragment.css('.cta-read-more-button > a').first['href'] = read_more
         end
-        doc.at('#content').add_child(fragment_article)
       end
     end
+
+    private_class_method :get_author, :put_author, :put_read_more
   end
 end
