@@ -25,6 +25,16 @@ class TestSLMParser < Minitest::Test
     assert_equal('I have some leading spaces, and trailing as well', tree['CheckItOut'][:data])
   end
 
+  def test_get_tag_positive
+    assert_equal('Test', SLMParser.get_tag('⇥Test⇤ eins zwei drei'))
+    assert_equal('TestTada', SLMParser.get_tag('⇥TestTada⇤ eins zwei drei'))
+    assert_equal('Test Yeah', SLMParser.get_tag('⇥Test Yeah⇤ eins zwei drei'))
+  end
+
+  def test_get_tag_negative
+    assert_nil(SLMParser.get_tag('<Test> eins zwei drei'))
+  end
+
   def test_get_indent_none
     assert_equal(0, SLMParser.get_indent('⇥Test⇤ test eins zwei drei'))
   end
