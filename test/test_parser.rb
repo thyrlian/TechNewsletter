@@ -25,6 +25,26 @@ class TestSLMParser < Minitest::Test
     assert_equal('I have some leading spaces, and trailing as well', tree['CheckItOut'][:data])
   end
 
+  def test_get_indent_none
+    assert_equal(0, SLMParser.get_indent("⇥Test⇤ test eins zwei drei"))
+  end
+
+  def test_get_indent_one_with_spaces
+    assert_equal(1, SLMParser.get_indent("  ⇥Test⇤ test"))
+  end
+
+  def test_get_indent_one_with_tab
+    assert_equal(1, SLMParser.get_indent("  ⇥Test⇤ test"))
+  end
+
+  def test_get_indent_more_with_spaces
+    assert_equal(2, SLMParser.get_indent("    ⇥Test⇤ test"))
+  end
+
+  def test_get_indent_more_with_tabs
+    assert_equal(3, SLMParser.get_indent("      ⇥Test⇤ test"))
+  end
+
   def test_normalize
     assert_equal("Foobar", SLMParser.normalize("Foobar"))
     assert_equal(" Foobar", SLMParser.normalize(" Foobar"))
