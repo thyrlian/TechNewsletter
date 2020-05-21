@@ -35,6 +35,14 @@ class TestSLMParser < Minitest::Test
     assert_nil(SLMParser.get_tag('<Test> eins zwei drei'))
   end
 
+  def test_get_data_positive
+    assert_equal('eins zwei drei, oh la la!', SLMParser.get_data('⇥Test⇤ eins zwei drei, oh la la!'))
+  end
+
+  def test_get_data_negative
+    assert_nil(SLMParser.get_data('<Test> whatever'))
+  end
+
   def test_get_indent_none
     assert_equal(0, SLMParser.get_indent('⇥Test⇤ test eins zwei drei'))
   end
