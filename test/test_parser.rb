@@ -25,6 +25,22 @@ class TestSLMParser < Minitest::Test
     assert_equal('I have some leading spaces, and trailing as well', tree['CheckItOut'][:data])
   end
 
+  def test_obtain_clean_match_content_returns_object
+    assert_equal('ABC!@#', SLMParser.send(:obtain_clean_match_content, /^(.*)\$/, 'ABC!@#$123'))
+  end
+
+  def test_obtain_clean_match_content_returns_object_with_space_trimmed_off
+    assert_equal('ABC', SLMParser.send(:obtain_clean_match_content, /^(.*)\$/, '  ABC $123'))
+  end
+
+  def test_obtain_clean_match_content_returns_nil_because_no_match
+    assert_nil(SLMParser.send(:obtain_clean_match_content, /^(.*)\$\$/, 'ABC$123'))
+  end
+
+  def test_obtain_clean_match_content_returns_nil_because_only_space
+    assert_nil(SLMParser.send(:obtain_clean_match_content, /^(.*)\$/, '   $12345'))
+  end
+
   def test_get_tag_positive
     assert_equal('Test', SLMParser.get_tag('⇥Test⇤ eins zwei drei'))
     assert_equal('TestTada', SLMParser.get_tag('⇥TestTada⇤ eins zwei drei'))
