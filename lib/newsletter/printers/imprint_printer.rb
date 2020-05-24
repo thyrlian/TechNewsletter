@@ -1,3 +1,5 @@
+require_relative 'printer'
+
 module Newsletter
   class ImprintPrinter < Printer
     class << self
