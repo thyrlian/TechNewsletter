@@ -9,6 +9,39 @@ class TestSpec < Minitest::Test
     assert_equal({}, @spec.instance_variable_get(:@tree))
   end
 
+  def test_insert_to_parent_with_children
+    tree = {'Name'=>{:data=>'Unit Testing', :indent=>0}, 'Content'=>{:data=>nil, :indent=>0, :children=>{'Forgery'=>{:data=>'Fake data...', :indent=>1}}}}
+    new_tree = Marshal.load(Marshal.dump(tree))
+    tag = 'Post'
+    data = 'Lorem ipsum'
+    indent = 1
+    @spec.send(:insert_to_parent, new_tree['Content'], tag, data, indent)
+    assert_equal(tree['Name'], new_tree['Name'])
+    assert_equal({:data=>nil, :indent=>0, :children=>{'Forgery'=>{:data=>'Fake data...', :indent=>1}, tag=>{:data=>data, :indent=>indent}}}, new_tree['Content'])
+  end
+
+  def test_insert_to_parent_with_empty_children
+    tree = {'Name'=>{:data=>'Unit Testing', :indent=>0}, 'Content'=>{:data=>nil, :indent=>0, :children=>{}}}
+    new_tree = Marshal.load(Marshal.dump(tree))
+    tag = 'Post'
+    data = 'Lorem ipsum'
+    indent = 1
+    @spec.send(:insert_to_parent, new_tree['Content'], tag, data, indent)
+    assert_equal(tree['Name'], new_tree['Name'])
+    assert_equal({:data=>nil, :indent=>0, :children=>{tag=>{:data=>data, :indent=>indent}}}, new_tree['Content'])
+  end
+
+  def test_insert_to_parent_without_children
+    tree = {'Name'=>{:data=>'Unit Testing', :indent=>0}, 'Content'=>{:data=>nil, :indent=>0}}
+    new_tree = Marshal.load(Marshal.dump(tree))
+    tag = 'Post'
+    data = 'Lorem ipsum'
+    indent = 1
+    @spec.send(:insert_to_parent, new_tree['Content'], tag, data, indent)
+    assert_equal(tree['Name'], new_tree['Name'])
+    assert_equal({:data=>nil, :indent=>0, :children=>{tag=>{:data=>data, :indent=>indent}}}, new_tree['Content'])
+  end
+
   def test_insert_child_with_unique
     tree = {'Name'=>{:data=>'Unit Testing', :indent=>0}, 'Dummy'=>{:data=>nil, :indent=>0, :children=>{'Forgery'=>{:data=>'Fake data...', :indent=>1}}}, 'Content'=>{:data=>nil, :indent=>0}}
     tag = 'TestTag'
