@@ -9,6 +9,63 @@ class TestSpec < Minitest::Test
     assert_equal({}, @spec.instance_variable_get(:@tree))
   end
 
+  def test_insert_to_empty_tree
+    tree = {}
+    tag = 'Draft'
+    data = 'Lorem ipsum'
+    indent = 1
+    @spec.send(:insert, tree, tag, data, indent)
+    assert_equal({tag=>{:data=>data, :indent=>indent}}, tree)
+  end
+
+  def test_insert_to_children
+    tag = 'Draft'
+    data = 'Lorem ipsum'
+    indent = 1
+    tree = {'Content'=>{:data=>nil, :indent=>0, :children=>{}}}
+    new_tree = Marshal.load(Marshal.dump(tree))
+    @spec.send(:insert, new_tree['Content'], tag, data, indent)
+    assert_equal({tag=>{:data=>data, :indent=>indent}}, new_tree['Content'][:children])
+    tree = {'Content'=>{:data=>nil, :indent=>0, :children=>{'Forgery'=>{:data=>'Fake data...', :indent=>1}}}}
+    new_tree = Marshal.load(Marshal.dump(tree))
+    @spec.send(:insert, new_tree['Content'], tag, data, indent)
+    assert_equal({'Forgery'=>{:data=>'Fake data...', :indent=>1}, tag=>{:data=>data, :indent=>indent}}, new_tree['Content'][:children])
+  end
+
+  def test_insert_with_equivalent_indent
+    tree = {'Whatever'=>{:data=>'Anything', :indent=>1}, 'Last'=>{:data=>'Mock', :indent=>1}}
+    new_tree = Marshal.load(Marshal.dump(tree))
+    tag = 'ToInsert'
+    data = 'Lorem ipsum'
+    indent = 1
+    @spec.send(:insert, new_tree, tag, data, indent)
+    assert_equal(tree['Whatever'], new_tree['Whatever'])
+    assert_equal(tree['Last'], new_tree['Last'])
+    assert_equal({:data=>data, :indent=>indent}, new_tree[tag])
+  end
+
+  def test_insert_with_one_level_more_indent
+    tree = {'Whatever'=>{:data=>'Anything', :indent=>1}, 'Last'=>{:data=>'Mock', :indent=>1}}
+    new_tree = Marshal.load(Marshal.dump(tree))
+    tag = 'ToInsert'
+    data = 'Lorem ipsum'
+    indent = 2
+    @spec.send(:insert, new_tree, tag, data, indent)
+    assert_equal(tree['Whatever'], new_tree['Whatever'])
+    assert_equal({:data=>'Mock', :indent=>1, :children=>{tag=>{:data=>data, :indent=>indent}}}, new_tree['Last'])
+  end
+
+  def test_insert_with_deeper_indent
+    tree = {'Whatever'=>{:data=>'Anything', :indent=>1}, 'Last'=>{:data=>'Mock', :indent=>1, :children=>{'Forgery'=>{:data=>'Fake data...', :indent=>2}}}}
+    new_tree = Marshal.load(Marshal.dump(tree))
+    tag = 'ToInsert'
+    data = 'Lorem ipsum'
+    indent = 3
+    @spec.send(:insert, new_tree, tag, data, indent)
+    assert_equal(tree['Whatever'], new_tree['Whatever'])
+    assert_equal({:data=>'Mock', :indent=>1, :children=>{'Forgery'=>{:data=>'Fake data...', :indent=>2, :children=>{tag=>{:data=>data, :indent=>indent}}}}}, new_tree['Last'])
+  end
+
   def test_insert_to_parent_with_children
     tree = {'Name'=>{:data=>'Unit Testing', :indent=>0}, 'Content'=>{:data=>nil, :indent=>0, :children=>{'Forgery'=>{:data=>'Fake data...', :indent=>1}}}}
     new_tree = Marshal.load(Marshal.dump(tree))
