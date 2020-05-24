@@ -2,6 +2,8 @@
 
 # TechNewsletter
 
+[![Ruby](https://github.com/thyrlian/TechNewsletter/workflows/Ruby/badge.svg)](https://github.com/thyrlian/TechNewsletter/actions?query=workflow%3ARuby)
+
 The engineering way 🤓 of composing a responsive design newsletter email 📰📧 in markup language.
 
 <img src="https://github.com/thyrlian/TechNewsletter/blob/master/assets/images/Intro.png?raw=true">
