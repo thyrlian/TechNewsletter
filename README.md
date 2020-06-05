@@ -4,6 +4,8 @@
 
 [![Ruby](https://github.com/thyrlian/TechNewsletter/workflows/Ruby/badge.svg)](https://github.com/thyrlian/TechNewsletter/actions?query=workflow%3ARuby)
 
+[![ProductHunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=204456&theme=light)](https://www.producthunt.com/posts/technewsletter)
+
 The engineering way 🤓 of composing a responsive design newsletter email 📰📧 in markup language.
 
 <img src="https://github.com/thyrlian/TechNewsletter/blob/master/assets/images/Intro.png?raw=true">
