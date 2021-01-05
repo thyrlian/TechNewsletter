@@ -82,7 +82,7 @@ To run unit test: `rake test`
 
 ## License
 
-Copyright (c) 2016-2020 Jing Li.  It is released under the [MIT License](https://opensource.org/licenses/MIT).  See the [LICENSE](https://raw.githubusercontent.com/thyrlian/TechNewsletter/master/LICENSE) file for details.  Additionally, there is a [hardcoded attribution](https://github.com/thyrlian/TechNewsletter/blob/master/templates/attribution.html) at the bottom of the generated newsletter, just to give credit to my hard work.
+Copyright (c) 2016-2021 Jing Li.  It is released under the [MIT License](https://opensource.org/licenses/MIT).  See the [LICENSE](https://raw.githubusercontent.com/thyrlian/TechNewsletter/master/LICENSE) file for details.  Additionally, there is a [hardcoded attribution](https://github.com/thyrlian/TechNewsletter/blob/master/templates/attribution.html) at the bottom of the generated newsletter, just to give credit to my hard work.
 
 ## Attribution
 
