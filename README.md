@@ -54,6 +54,8 @@ To run unit test: `rake test`
 
 ## Compatibility
 
+To check the email client support of any specific HTML and CSS feature, please go and ask **[Can I email…](https://www.caniemail.com/)**
+
 * **External CSS**: When you host the CSS file on GitHub (not [GitHub Pages](https://pages.github.com/)), even if you specify `type="text/css"`, GitHub will respond the CSS file with MIME type `text/plain`, and your browser won't be able to render the CSS.
 
   - Chrome: `Cross-Origin Read Blocking (CORB) blocked cross-origin response with MIME type text/plain.`
