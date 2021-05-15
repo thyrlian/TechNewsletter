@@ -1,4 +1,6 @@
 require_relative 'printer'
+require_relative '../ml_parser_wrapper'
+require_relative '../plugins/helper'
 
 module Newsletter
   class SocialMediaPrinter < Printer

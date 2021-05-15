@@ -1,3 +1,5 @@
+require_relative 'spec'
+
 module Newsletter
   class SLMParser
     INDENT_SIZE = 2

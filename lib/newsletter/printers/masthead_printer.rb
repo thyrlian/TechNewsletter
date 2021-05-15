@@ -1,4 +1,5 @@
 require_relative 'printer'
+require_relative '../ml_parser_wrapper'
 
 module Newsletter
   class MastheadPrinter < Printer

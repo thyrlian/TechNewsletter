@@ -1,4 +1,6 @@
 require 'premailer'
+require_relative 'ml_parser_wrapper'
+require_relative 'printers/helper'
 
 module Newsletter
   class Factory
