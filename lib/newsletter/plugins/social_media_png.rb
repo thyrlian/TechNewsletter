@@ -1,3 +1,5 @@
+require_relative 'social_media'
+
 module Newsletter
   class SocialMediaPNG < SocialMedia
     @@dir = 'https://raw.githubusercontent.com/thyrlian/TechNewsletter/master/assets/images/social_media/'

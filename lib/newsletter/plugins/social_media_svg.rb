@@ -1,3 +1,5 @@
+require_relative 'social_media'
+
 module Newsletter
   class SocialMediaSVG < SocialMedia
     class << self
