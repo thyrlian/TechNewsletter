@@ -1,4 +1,5 @@
 require_relative 'printer'
+require_relative '../plugins/gravatar'
 
 module Newsletter
   class ArticlePrinter < Printer
