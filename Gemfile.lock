@@ -6,10 +6,10 @@ GEM
     css_parser (1.7.1)
       addressable
     htmlentities (4.3.4)
-    mini_portile2 (2.5.0)
+    mini_portile2 (2.6.1)
     minitest (5.14.0)
-    nokogiri (1.11.0)
-      mini_portile2 (~> 2.5.0)
+    nokogiri (1.12.5)
+      mini_portile2 (~> 2.6.1)
       racc (~> 1.4)
     premailer (1.11.1)
       addressable
@@ -24,7 +24,7 @@ PLATFORMS
 
 DEPENDENCIES
   minitest (~> 5.14.0)
-  nokogiri (~> 1.11.0)
+  nokogiri (~> 1.12.5)
   premailer (~> 1.11, >= 1.11.1)
   rake (~> 13.0.1)
 
