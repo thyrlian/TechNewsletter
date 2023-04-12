@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'nokogiri', '~> 1.11.0'
+gem 'nokogiri', '~> 1.14.3'
 gem 'premailer', '~> 1.11', '>= 1.11.1'
 
 group :test do
